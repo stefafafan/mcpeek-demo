@@ -119,6 +119,19 @@ export const presets = [
     source: encode({ docs: { url: "http://example.com/mcp" } }),
   },
   {
+    id: "tls",
+    name: "TLS verification disabled",
+    group: "Rules",
+    kind: "shield",
+    source: encode({
+      docs: {
+        command: "npx",
+        args: ["@example/mcp-server@1.2.3"],
+        env: { NODE_TLS_REJECT_UNAUTHORIZED: "0" },
+      },
+    }),
+  },
+  {
     id: "wrapper",
     name: "Unsupported wrapper",
     group: "Parsing",
