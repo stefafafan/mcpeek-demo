@@ -1,0 +1,8 @@
+node_modules/
+dist/
+public/mcpeek.wasm
+public/wasm_exec.js
+test-results/
+playwright-report/
+.DS_Store
+*.tsbuildinfo

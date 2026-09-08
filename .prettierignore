@@ -1,0 +1,8 @@
+node_modules
+dist
+public/wasm_exec.js
+public/mcpeek.wasm
+pnpm-lock.yaml
+test-results
+playwright-report
+*.tsbuildinfo
