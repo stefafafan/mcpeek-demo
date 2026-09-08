@@ -86,6 +86,7 @@ test("presets produce expected scanner results", async ({ page }) => {
     ["Sensitive mount", 1],
     ["Host namespace", 1],
     ["Plaintext endpoint", 1],
+    ["TLS verification disabled", 1],
     ["Unsupported wrapper", 2],
   ] as const) {
     await page.getByRole("button", { name, exact: true }).click();
@@ -176,6 +177,34 @@ test("finding navigation handles escaped keys and duplicate field names", async 
   await expect(page.locator(".cm-finding-line")).toContainText(
     "http://example.com",
   );
+});
+
+test("TLS bypass preset runs the scanner and highlights the environment field", async ({
+  page,
+}) => {
+  await page
+    .getByRole("button", { name: "TLS verification disabled", exact: true })
+    .click();
+  await page.getByLabel("Fail on").selectOption("error");
+  await page.getByRole("button", { name: "Run analysis" }).click();
+  await expect(
+    page.getByRole("heading", {
+      name: "tls-verification-disabled",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.getByTestId("exit-code")).toHaveText("Exit 1");
+  await page
+    .getByRole("button", {
+      name: "Show tls-verification-disabled in configuration",
+    })
+    .click();
+  await expect(page.locator(".cm-finding-line")).toContainText(
+    '"NODE_TLS_REJECT_UNAUTHORIZED": "0"',
+  );
+  await page.getByLabel("Ignore rules").fill("tls-verification-disabled:docs");
+  await page.getByRole("button", { name: "Run analysis" }).click();
+  await expect(page.getByTestId("exit-code")).toHaveText("Exit 0");
 });
 
 test("fits mobile with editable input and accessible output", async ({

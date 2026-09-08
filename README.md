@@ -8,7 +8,7 @@ Results include findings, original text and JSON output, and the CLI exit code.
 
 Requires Go 1.27.1, Node.js 24.18.0 (see `.node-version`), and pnpm 10.27.0.
 The scanner is downloaded as a Go module pinned to commit
-`4180db1debe1e3c3156085fbfb103c1015e5c746`; `go.sum` records its checksums.
+`164647c5daecd1accdcf8b392d984edf51be0a19`; `go.sum` records its checksums.
 No sibling checkout, submodule, or copied scanner implementation is needed.
 The adapter module path is beneath mcpeek's module path so it can call the
 existing internal CLI package.
