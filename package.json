@@ -9,6 +9,8 @@
     "dev": "pnpm wasm && vite --host 127.0.0.1",
     "build": "pnpm wasm && tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
+    "deploy": "wrangler deploy",
+    "deploy:check": "wrangler deploy --dry-run",
     "test": "go test ./wasm && pnpm wasm && playwright test",
     "test:browser": "pnpm wasm && playwright test",
     "format": "prettier --write .",
@@ -32,6 +34,7 @@
     "@vitejs/plugin-react": "^6.1.1",
     "prettier": "^3.9.6",
     "typescript": "^7.0.2",
-    "vite": "^8.2.2"
+    "vite": "^8.2.2",
+    "wrangler": "4.129.1"
   }
 }
